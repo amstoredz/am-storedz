@@ -17,7 +17,7 @@ app.use(express.static('public'));
 // Admin Password (In a real app, hash this or use env vars)
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'moha1';
 const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN || '8566898262:AAE7jjCLazUWHxwSTQ89GWg2K_yLupboQ1Q';
-const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID || '5820217239';
+const TELEGRAM_CHAT_IDS = ( process.env.TELEGRAM_CHAT_IDS || "5828217239,8149027569").split(",");
 
 // --- Helpers ---
 const readProducts = () => {
@@ -107,11 +107,13 @@ app.post('/api/order', async (req, res) => {
 
     try {
         const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
-        await axios.post(url, {
-            chat_id: TELEGRAM_CHAT_ID,
-            text: message,
-            parse_mode: 'Markdown'
-        });
+       for (const chatId of TELEGRAM_CHAT_IDS) {
+  await axios.post(url, {
+    chat_id: chatId,
+    text: message,
+    parse_mode: "Markdown"
+  });
+}
         res.json({ success: true, message: 'تم استلام طلبك بنجاح' });
     } catch (error) {
         console.error("Telegram Error:", error.response ? error.response.data : error.message);
