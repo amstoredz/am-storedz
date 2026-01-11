@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 app.use(express.static('public'));
 
 // Admin Password (In a real app, hash this or use env vars)
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'admin123';
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'moha1';
 const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN || '8566898262:AAE7jjCLazUWHxwSTQ89GWg2K_yLupboQ1Q';
 const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID || '5820217239';
 
