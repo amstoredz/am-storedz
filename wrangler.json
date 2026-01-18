@@ -1,0 +1,28 @@
+{
+  "name": "am-store-luxury-watches",
+  "type": "javascript",
+  "account_id": "YOUR_ACCOUNT_ID",
+  "workers_dev": true,
+  "route": "",
+  "zone_id": "",
+  "main": "src/index.ts",
+  "build": {
+    "command": "npm run build",
+    "cwd": "./",
+    "watch_paths": ["src/**/*.ts", "src/**/*.tsx"],
+    "upload": {
+      "format": "service-worker"
+    }
+  },
+  "env": {
+    "production": {
+      "name": "am-store-luxury-watches-prod",
+      "routes": [
+        {
+          "pattern": "am-store.pages.dev/*",
+          "zone_name": "am-store.pages.dev"
+        }
+      ]
+    }
+  }
+}
